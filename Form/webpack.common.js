@@ -34,9 +34,9 @@ module.exports = {
     new ModuleFederationPlugin({
       library: {
         type: "var",
-        name: "form",
+        name: "FormApp",
       },
-      name: "form",
+      name: "FormApp",
       filename: "remoteEntry.js",
       exposes: {
         "./Form": "./src/Form",

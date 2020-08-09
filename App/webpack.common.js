@@ -1,9 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
-const htmlConfig = {
-  template: "./src/template.html",
-};
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -31,5 +28,34 @@ module.exports = {
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin(), new HtmlWebpackPlugin(htmlConfig)],
+  plugins: [
+    new ModuleFederationPlugin({
+      library: {
+        type: "var",
+        name: "app",
+      },
+      name: "app",
+      remotes: {
+        RemoteForm: "FormApp",
+      },
+      shared: {
+        "@material-ui/core": {
+          eager: true,
+          singleton: true,
+        },
+        react: {
+          eager: true,
+          singleton: true,
+        },
+        "react-dom": {
+          eager: true,
+          singleton: true,
+        },
+      },
+    }),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+  ],
 };
