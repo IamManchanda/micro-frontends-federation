@@ -15,7 +15,7 @@ const htmlConfig = {
 module.exports = {
   entry: "./src/index.js",
   output: {
-    publicPath: "/",
+    publicPath: "http://localhost:4000/",
     path: path.resolve(__dirname, "dist"),
   },
   module: {

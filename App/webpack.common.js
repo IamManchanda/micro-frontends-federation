@@ -8,7 +8,7 @@ const htmlConfig = {
 module.exports = {
   entry: "./src/index.js",
   output: {
-    publicPath: "/",
+    publicPath: "http://localhost:5000/",
   },
   module: {
     rules: [
