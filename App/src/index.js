@@ -1,7 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import Webpack from "./assets/Webpack";
-import './styles.css';
+import "./styles.css";
 
-ReactDOM.render(<Webpack />,
-    document.getElementById("root"));
+ReactDOM.render(<Webpack />, document.getElementById("root"));
