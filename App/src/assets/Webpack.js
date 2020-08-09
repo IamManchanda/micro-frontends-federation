@@ -1,12 +1,8 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
-import WebpackPng from "./webpack.png";
+import React, { lazy, Suspense } from "react";
+import styled from "styled-components";
 import BackPng from "./back.png";
 
-const rotate = keyframes`
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
+const RemoteForm = lazy(() => import("RemoteForm/Form"));
 
 const Page = styled.div`
   height: 100vh;
@@ -25,17 +21,13 @@ const WebpackTitle = styled.h4`
   color: #fff;
 `;
 
-const WebpackLogo = styled.img`
-  width: 350px;
-  height: 350px;
-  animation: ${rotate} linear 10s infinite;
-`;
+const Webpack = () => (
+  <Page>
+    <WebpackTitle>Form App</WebpackTitle>
+    <Suspense fallback="Loading...">
+      <RemoteForm />
+    </Suspense>
+  </Page>
+);
 
-export default function Webpack() {
-  return (
-    <Page>
-      <WebpackLogo src={WebpackPng} />
-      <WebpackTitle>Webpack 5</WebpackTitle>
-    </Page>
-  );
-}
+export default Webpack;
